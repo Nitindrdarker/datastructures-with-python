@@ -1,4 +1,3 @@
- 
 class Node: 
     def __init__(self, key): 
         self.left = None
@@ -45,7 +44,37 @@ def find_max(root):
     if root.right is not None:
         return find_max(root.right)
     return root.val
-  
+def height(root):
+    if(root == None):
+        return -1
+    else:
+        left_node = height(root.left)
+        right_node = height(root.right)
+        return max(left_node,right_node)+1
+def breadth_first_travarsal(root):
+    if root == None:
+        print('empty bst')
+        return 
+    q = []
+    
+    q.append(root)
+    
+    
+    while(q):
+       
+        current = q.pop(0)
+        print(current.val)
+        if(current.left != None):
+            q.append(current.left)
+        if(current.right != None):
+            q.append(current.right)
+            
+        
+    
+                
+
+
+
   
 
 r = Node(50) 
@@ -67,3 +96,6 @@ postorder(r)
 print('min = ',find_min(r))
 
 print('max = ',find_max(r))
+print('height = ',height(r))
+print('breadth_first_travarsal')
+breadth_first_travarsal(r)
