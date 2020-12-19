@@ -68,7 +68,40 @@ def breadth_first_travarsal(root):
             q.append(current.left)
         if(current.right != None):
             q.append(current.right)
-            
+def findmin_node(root):
+    while(root.left != None):
+        root = root.left
+    return root
+
+def delete_node(root,d):
+    if(root == None):
+        return root
+    elif(root.val > d):
+        root.left = delete_node(root.left, d)
+    elif(root.val < d):
+        root.right = delete_node(root.right, d)
+    else:
+        if(root.left == None and root.right == None):
+            root = None
+        elif(root.right == None):
+            temp = root
+            root = root.left
+            temp = None
+        elif(root.left == None):
+            temp = root
+            root = root.right
+            temp = None
+        else:
+            temp = findmin_node(root.right)
+            root.val = temp.val
+            root.right = delete_node(root.right,temp.val)
+
+    return root
+
+
+
+
+
         
     
                 
@@ -99,3 +132,7 @@ print('max = ',find_max(r))
 print('height = ',height(r))
 print('breadth_first_travarsal')
 breadth_first_travarsal(r)
+print('deleteing node...!')
+
+r = delete_node(r,20)
+inorder(r)
