@@ -73,7 +73,8 @@ def findmin_node(root):
         root = root.left
     return root
 
-def delete_node(root,d):
+def delete_node(root, d):
+    
     if(root == None):
         return root
     elif(root.val > d):
@@ -97,6 +98,47 @@ def delete_node(root,d):
             root.right = delete_node(root.right,temp.val)
 
     return root
+def checking_util(root, int_min, int_max):
+    if(root == None):
+        return True
+    if((root.val > int_min) and (root.val <= int_max) and (checking_util(root.left, int_min, root.val)) and (checking_util(root.right, root.val, int_max))):
+        return True
+    else:
+        return False
+def bst_or_not(root):
+    if(root == None):
+        return True
+    else:
+        return checking_util(root, -100000, 100000)
+def find(root,d):
+    if(root == None):
+        return None
+    elif(root.val == d):
+        return root
+    elif(root.val < d):
+        return find(root.right,d)
+    else:
+        return find(root.left,d)
+
+def getSuccessor(root,d):
+    current = find(root,d)
+    if(current == None):
+        return None
+    elif(current.right != None):
+        return find_min(current.right)
+    elif(current.right == None):
+        sucessor = None
+        ansestor = root
+        while(ansestor != current):
+            if(ansestor.val > current.val):
+                sucessor = ansestor
+                ansestor = ansestor.left
+            else:
+                ansestor = ansestor.right
+        return sucessor.val
+    
+
+
 
 
 
@@ -136,3 +178,6 @@ print('deleteing node...!')
 
 r = delete_node(r,20)
 inorder(r)
+print('is it binary search tree:', bst_or_not(r))
+r = insert(r,20)
+print("sucessor is ",getSuccessor(r,20))
