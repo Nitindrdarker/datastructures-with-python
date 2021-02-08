@@ -11,7 +11,4 @@ def searching(txt, pat):
             j += 1
         if j == m:
             print(f'match found at index : {i}')
- 
-
-
 searching(input(), input())
