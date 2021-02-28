@@ -19,8 +19,6 @@ def invert_bt(root):
 
 
 
-
-
 r = node(0)
 r.left = node(1)
 r.right = node(2)

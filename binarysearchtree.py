@@ -36,6 +36,7 @@ def postorder(root):
         postorder(root.right)
         print(root.val)
 
+
 def find_min(root):
     if root.left is not None:
         return find_min(root.left)
@@ -119,7 +120,20 @@ def find(root,d):
         return find(root.right,d)
     else:
         return find(root.left,d)
-
+def inOrder(root):
+    current = root 
+    stack = []
+    done = 0
+    while current is not None or len(stack) != 0:
+        if current is not None:
+            stack.append(current)
+         
+            current = current.left 
+        else:
+            current = stack.pop()
+            print(current.val, end=" ")
+            current = current.right 
+    print()
 def getSuccessor(root,d):
     current = find(root,d)
     if(current == None):
@@ -136,21 +150,6 @@ def getSuccessor(root,d):
             else:
                 ansestor = ansestor.right
         return sucessor.val
-    
-
-
-
-
-
-
-
-        
-    
-                
-
-
-
-  
 
 r = Node(50) 
 r = insert(r, 30) 
@@ -181,3 +180,5 @@ inorder(r)
 print('is it binary search tree:', bst_or_not(r))
 r = insert(r,20)
 print("sucessor is ",getSuccessor(r,20))
+print("inorder travarsal using iteratition")
+inOrder(r)
