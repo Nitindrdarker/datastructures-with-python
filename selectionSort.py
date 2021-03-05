@@ -9,7 +9,7 @@ def selectionSort(arr):
                 count = j
         arr[i],arr[count]= arr[count],arr[i]
 
-    print(arr)
+        print(arr)
 
                 
 

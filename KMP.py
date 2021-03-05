@@ -1,18 +1,18 @@
 def compute_table(pat, m, table):
     j = 0
-    i = 1
+    
     table[0] = 0
-    for i in range(1, 6):
+    for i in range(1, len(pat)):
         if (pat[i] == pat[j]):
             j += 1
             table[i] = j
         else:
             if (j != 0):
                 j = table[j - 1]
-                i -= 1
+                
             else:
                 table[i] = 0
-        
+        print(table, i, j)
 def KMPsearch(pat, txt):
     n = len(txt)
     m = len(pat)
@@ -34,6 +34,6 @@ def KMPsearch(pat, txt):
                 i += 1
 
 
-txt = "ABABDABACDABABCABAB"
-pat = "ABABCABAB"
+txt = "BABBCBABABABABCD"
+pat = "ABABCDA"
 KMPsearch(pat, txt) 

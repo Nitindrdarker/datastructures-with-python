@@ -9,9 +9,11 @@ def heapify(arr, n, i):
     if smallest != i:
         arr[smallest], arr[i] = arr[i], arr[smallest]
         heapify(arr, n, smallest)
+    else:
+        return
 def heapsort(arr, n):
     heapify(arr, n, 0)
-    for i in range(n-1,0-1,-1):
+    for i in range(n-1, -1, -1):
         arr[i], arr[0] = arr[0], arr[i] 
         heapify(arr, i, 0)
 def print_heap(arr):

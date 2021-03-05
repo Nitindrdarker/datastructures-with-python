@@ -5,7 +5,7 @@ def bubbleSort(arr):
             if(arr[j]>arr[j+1]):
                 arr[j],arr[j+1] = arr[j+1],arr[j]
             
-    print(arr)
+            print(arr)
 l = int(input())
 a = numpy.zeros(l,dtype='int')
 
