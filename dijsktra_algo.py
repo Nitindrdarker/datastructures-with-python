@@ -24,6 +24,7 @@ class Graph():
         #main logical loop
         for i in range(self.V):
             u = self.minDistance(dist, sptSet)
+            print(u)
             sptSet[u] = True
             for v in range(self.V):
                 if self.graph[u][v] > 0 and sptSet[v] == False and dist[v] > dist[u] + self.graph[u][v]:

@@ -18,7 +18,7 @@ class Graph:
  
     # A function that does union of two sets of x and y
     # (uses union by rank)
-    def union(self, parent, rank, x, y):
+    def union(self, parent, x, y):
         parent[x] = y
  
     # The main function to construct MST using Kruskal's
@@ -46,7 +46,7 @@ class Graph:
         # Create V subsets with single elements
         for node in range(self.V):
             parent.append(node)
-            rank.append(0)
+            
         
         # Number of edges to be taken is equal to V-1
         while e < self.V - 1:
@@ -65,7 +65,7 @@ class Graph:
             if x != y:
                 e = e + 1
                 result.append([u, v, w])
-                self.union(parent, rank, x, y)
+                self.union(parent, x, y)
             # Else discard the edge
  
         minimumCost = 0
