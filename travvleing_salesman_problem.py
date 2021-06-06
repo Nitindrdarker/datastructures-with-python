@@ -1,11 +1,11 @@
 V = 4
 answer = []
 def tsp(graph, v, currPos, n, count, cost):
-    if count == n and graph[currPos][0]:
+    if count == n and graph[currPos][0] != 0:
         answer.append(cost + graph[currPos][0])
         return 
     for i in range(n):
-        if(v[i] == False and graph[currPos][i]):
+        if(v[i] == False and graph[currPos][i] != 0):
             v[i] = True
             tsp(graph, v, i, n, count + 1, cost + graph[currPos][i])
             v[i] = False
