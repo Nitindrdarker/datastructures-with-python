@@ -21,8 +21,8 @@ class Node:
 	def __init__(self, row, col, width, total_rows):
 		self.row = row
 		self.col = col
-		self.x = row * width
-		self.y = col * width
+		self.x = row * width #make the square box per i (row)
+		self.y = col * width #make the square box per j (column)
 		self.color = WHITE
 		self.neighbors = []
 		self.width = width
@@ -93,14 +93,14 @@ def h(p1, p2):
 	x2, y2 = p2
 	return abs(x1 - x2) + abs(y1 - y2)
 
-
+#to construct the main sortest path
 def reconstruct_path(came_from, current, draw):
 	while current in came_from:
 		current = came_from[current]
 		current.make_path()
 		draw()
 
-
+#main A* algorithm
 def algorithm(draw, grid, start, end):
 	count = 0
 	open_set = PriorityQueue()
@@ -149,22 +149,21 @@ def algorithm(draw, grid, start, end):
 
 def make_grid(rows, width):
 	grid = []
-	gap = width // rows
+	gap = width // rows # to take count number of pixel per box (here 800 // 50 = 16)
 	for i in range(rows):
 		grid.append([])
 		for j in range(rows):
 			node = Node(i, j, gap, rows)
 			grid[i].append(node)
-
 	return grid
 
 
 def draw_grid(win, rows, width):
 	gap = width // rows
 	for i in range(rows):
-		pygame.draw.line(win, GREY, (0, i * gap), (width, i * gap))
+		pygame.draw.line(win, BLACK, (0, i * gap), (width, i * gap))
 		for j in range(rows):
-			pygame.draw.line(win, GREY, (j * gap, 0), (j * gap, width))
+			pygame.draw.line(win, BLACK, (j * gap, 0), (j * gap, width))
 
 
 def draw(win, grid, rows, width):
